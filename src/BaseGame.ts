@@ -4,6 +4,15 @@ import Piece from "./Piece";
 import Utils from "./Utils";
 
 export default abstract class BaseGame implements IBaseGame {
+    head: Piece;
+    tail: Piece;
+    food: Piece;
+    goldenApple: Piece;
+    length: number;
+    growth: number;
+    score: number;
+    currentLevel: Level | null;
+    garden: HTMLDivElement;
     protected moving: boolean = false;
 
     protected paused: boolean = false;
