@@ -93,9 +93,9 @@ export default class Piece implements IPiece {
    */
   /* Bobby */
   isCollidingWith(node: Piece | null): boolean {
-    if (node === null) return false;
+    if (node == null) return false;
     else {
-      if (this.x === node.x && this.y === node.y) {
+      if (this.x == node.x && this.y == node.y) {
         return true;
       } else {
         return false;
