@@ -17,13 +17,18 @@ export default class Level {
 
   /**
    * FELADAT!
-   * Hozz létre egy metódust translate néven!
-   * Visszatérési érték: mind a két kapott paramétert kerekítsd lefelé, 
-   * majd szorozd meg egyenként a SIZE konstanssal.
+   * Hozz létre egy metódust translate néven!     --> translate(x: number, y: number) or something like this
+   * Visszatérési érték: mind a két kapott paramétert kerekítsd lefelé,  --> return math.floor(x & y)
+   * majd szorozd meg egyenként a SIZE konstanssal.   --> return *SIZE both the x and the y
    * @param x {number} - x koordináta
    * @param y {number} - y koordináta
    * @returns {coord} - egy [x, y] koordinátával tér vissza
    */
+
+   translate(x: number, y: number): coord {
+     return [Math.floor(x) * SIZE, Math.floor(y) * SIZE]
+   }
+
 
   remove (): void {
     this.pieces.forEach(piece => {
@@ -67,46 +72,46 @@ export default class Level {
   render (): void {
     /** 
      * FELADAT!
-     * @var {number} cols - this.garden.clientHeight és SIZE hányadosa, 
-     * lefelé kerekítve 
+     * @var {number} cols - this.garden.clientHeight és SIZE hányadosa,   --> this.garden.clientHeight / SIZE
+     * lefelé kerekítve  --> Math.floor()
      */
 
-    
+    let cols: number = Math.floor(this.garden.clientHeight / SIZE)
     
     /** 
      * FELADAT!
-     * @var {number} rows - this.garden.clientWidth és SIZE hányadosa, 
-     * lefelé kerekítve 
+     * @var {number} rows - this.garden.clientWidth és SIZE hányadosa,  --> this.garden.clientWidth / SIZE
+     * lefelé kerekítve   --> Math.floor()
      */
 
-    
+    let rows: number = Math.floor(this.garden.clientWidth / SIZE)
     
     /** 
      * FELADAT!
-     * @var {LevelMap} level - this.generatorFunction által visszaadott érték, 
-     * a rows és cols paraméterekkel
+     * @var {LevelMap} level - this.generatorFunction által visszaadott érték,  --> this.generatorFunction()
+     * a rows és cols paraméterekkel  --> (rows, cols)
      */
 
-    
+     let level: LevelMap = this.generatorFunction(rows, cols)
 
     level.forEach(line => {
       const [x0, y0]: coord = line[0];
 
       /**
        * FELADAT!
-       * Olvasd ki a fenti sorhoz hasonlóan az x1 és y1 koodrinátákat is, 
-       * a line második eleméből!
+       * Olvasd ki a fenti sorhoz hasonlóan az x1 és y1 koodrinátákat is, --> copy & paste change 0 to 1
+       * a line második eleméből! --> same
        */
 
-      
+      const [x1, y1]: coord = line[1];
 
       /**
        * FELADAT!
-       * Hívd meg a this.line metódust és add neki át az x0, y0, x1, y1 
+       * Hívd meg a this.line metódust és add neki át az x0, y0, x1, y1  --> this.line(x0, y0, x1, y1)
        * értékeket.
        */
 
-      
+      this.line(x0, y0, x1, y1)
 
     });
   }
