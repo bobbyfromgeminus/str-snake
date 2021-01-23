@@ -26,7 +26,7 @@ export default class Level {
    */
 
    translate(x: number, y: number): coord {
-     return [Math.floor(x) * SIZE, Math.floor(y) * SIZE]
+     return [Math.floor(x) * SIZE, Math.floor(y) * SIZE];
    }
 
 
@@ -76,7 +76,7 @@ export default class Level {
      * lefelé kerekítve  --> Math.floor()
      */
 
-    let cols: number = Math.floor(this.garden.clientHeight / SIZE)
+    let cols: number = Math.floor(this.garden.clientHeight / SIZE);
     
     /** 
      * FELADAT!
@@ -84,7 +84,7 @@ export default class Level {
      * lefelé kerekítve   --> Math.floor()
      */
 
-    let rows: number = Math.floor(this.garden.clientWidth / SIZE)
+    let rows: number = Math.floor(this.garden.clientWidth / SIZE);
     
     /** 
      * FELADAT!
@@ -92,7 +92,7 @@ export default class Level {
      * a rows és cols paraméterekkel  --> (rows, cols)
      */
 
-     let level: LevelMap = this.generatorFunction(rows, cols)
+     let level: LevelMap = this.generatorFunction(rows, cols);
 
     level.forEach(line => {
       const [x0, y0]: coord = line[0];
@@ -111,7 +111,7 @@ export default class Level {
        * értékeket.
        */
 
-      this.line(x0, y0, x1, y1)
+      this.line(x0, y0, x1, y1);
 
     });
   }
