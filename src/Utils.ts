@@ -11,6 +11,24 @@ class Debouncer {
      * @returns {number} - válaszd ki a kisebbet a num és a max közül 
      * majd válaszd ki a nagyobbat az előbbi érték és a min közül.
      */
+
+    /* GABI kódja */
+    static bound(num: number, min: number, max: number): number {
+        /* oldschool verzió
+        //válaszd ki a kisebbet a num és a max közül!
+        let minvalue = 0;
+        if (num < max) minvalue = num;
+        else minvalue = max;
+        //majd válaszd ki a nagyobbat az előbbi érték és a min közül.
+        let maxvalue = 0;
+        if (minvalue > min) maxvalue = minvalue;
+        else maxvalue = min;
+        return maxvalue; */
+
+        //elegánsabb verzió
+        return Math.max(Math.min(num, max), min);
+    }
+    /* GABI kódja */
     
 
     static debounce<T extends Function>(fun: T, wait: number) {
@@ -43,6 +61,13 @@ class Utils extends Debouncer {
      * @param el {Element} - egy DOM Element típus
      * @returns {void}
      */
+
+    /* GABI kódja */
+    static removeNode(el: Element): void {
+        //A metódus a kapott elemet eltávolítja a saját parentNode -jából.
+        el.remove();
+    }
+    /* GABI kódja */
 
 
 }
