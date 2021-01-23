@@ -53,8 +53,55 @@ interface IPiece {
  * Pótold a hiányzó tulajdonságokat és metódusokat az interfész alapján.
  */
 export default class Piece implements IPiece {
+
+  el: HTMLDivElement;
+  direction: string;
+  type: string;
   
-  
+  /* Bobby */
+  x: number;
+  y: number;
+  next: Piece | null;
+  prev: Piece | null;
+  garden: HTMLDivElement;
+
+  /**
+   * @param type {string} - a beállítandó típus
+   * 1. A this.type tulajdonságot beállítja a kapott type értékre.
+   * 2. Meghívja a this.applyClass metódust a változtatások érvényesítéséhez.
+   */
+
+  /* Bobby */
+  setType(type: string): void {
+    this.type = type;
+    this.applyClass();
+  }
+
+  /* Bobby */
+  applyClass(): void {
+    this.el.className = '';
+    this.el.classList.add('cell', this.type, this.direction);
+  }
+
+  /**
+   * Megállapítja, hogy ütközött-e a kígyó darabja valamivel.
+   * @param node {Piece}
+   * @returns {boolean}
+   * Ha a node null, akkor false értékkel tér vissza, 
+   * Ha nem, akkor akkor tér vissza true -val, ha a this.x egyenlő a node.x -el 
+   * és a this.y egyenlő a node.y -al.
+   */
+  /* Bobby */
+  isCollidingWith(node: Piece | null): boolean {
+    if (node === null) return false;
+    else {
+      if (this.x === node.x && this.y === node.y) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
   
   constructor({
     x,
