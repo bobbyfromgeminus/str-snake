@@ -188,7 +188,8 @@ export default class Game extends BaseGame {
         this.growth += 1; // Snake got bigger
       }
 
-      this.updateScore(type === 'food' ? 10 : 50); // Calculate the new score
+      // Extra: Itt állíthatóak az almákért kapott pontszámok. Eredetileg 10 és 50.
+      this.updateScore(type === 'food' ? 1 : -2); // Calculate the new score
       this.showScore(); // Update the score
     }
   }
@@ -245,6 +246,7 @@ export default class Game extends BaseGame {
   getSpeed (): number {
     const initialSpeed = 200;
     const calculated = (initialSpeed - this.growth * 0.5) + this.debugSpeed + this.keyHeld;
+    console.log(this.growth);
 
     return Utils.bound(calculated, FASTEST, SLOWEST);
   }
@@ -263,6 +265,10 @@ export default class Game extends BaseGame {
     const points = document.getElementById('points') as HTMLDivElement;
 
     // Speed: ${Math.floor(1000 / this.getSpeed())}bps
+
+    // EXTRA: Ha a this.score 20, akkor átírom 0-ra.
+    if (this.score === 20) this.score = 0;
+
     points.innerHTML = `${this.score}`;
   }
 

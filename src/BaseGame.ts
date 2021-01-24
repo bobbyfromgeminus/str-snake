@@ -9,7 +9,7 @@ export default abstract class BaseGame implements IBaseGame {
     food: Piece;
     goldenApple: Piece;
     length: number;
-    growth: number;
+    growth: number = 0;
     score: number;
     currentLevel: Level | null;
     garden: HTMLDivElement;
